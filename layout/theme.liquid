@@ -19,6 +19,9 @@
 
     {% # Load and preload the critical CSS %}
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
+    
+    {% # Load compiled CSS from Vite %}
+    {{ 'main.css' | asset_url | stylesheet_tag }}
 
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
@@ -32,5 +35,8 @@
     {{ content_for_layout }}
 
     {% sections 'footer-group' %}
+    
+    {% # Load compiled JavaScript from Vite %}
+    <script src="{{ 'main.js' | asset_url }}" defer></script>
   </body>
 </html>

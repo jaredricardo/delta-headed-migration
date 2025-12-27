@@ -7,11 +7,15 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
-node_modules/
 
-# Shopify CLI files
+node_modules/
+package-lock.json  # Optional: some prefer to commit this
+
 .shopify/
 
-## Release files
+.env
+.env.local
+.env.*.local
+
 release
 *.zip
