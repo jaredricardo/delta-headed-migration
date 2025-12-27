@@ -19,3 +19,6 @@ package-lock.json  # Optional: some prefer to commit this
 
 release
 *.zip
+
+assets/main.js
+assets/main.css
