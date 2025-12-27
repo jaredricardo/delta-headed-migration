@@ -1,11 +1,9 @@
-# Development source files (use compiled versions instead)
-src/
+src/*
 src/**/*
 
-node_modules/
+node_modules/*
 package.json
 package-lock.json
-
 
 vite.config.js
 postcss.config.js
@@ -15,10 +13,10 @@ tailwind.config.js
 .env.*
 !.env.example
 
-.git/
+.git/*
 .gitignore
 
-.shopify/
+.shopify/*
 
 README.md
 README-VITE.md
@@ -28,7 +26,3 @@ LICENSE.md
 
 .DS_Store
 Thumbs.db
-
-*.log
-*.tmp
-*.cache

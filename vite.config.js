@@ -11,6 +11,12 @@ export default defineConfig(({ mode }) => {
       // Don't empty the assets folder (preserve other Shopify assets)
       emptyOutDir: false,
       
+      // Watch options - prevent watching output directory
+      watch: {
+        // Exclude assets folder to prevent infinite rebuild loop
+        exclude: ['assets/**', 'node_modules/**'],
+      },
+      
       // Configure entry points for your JS and CSS
       rollupOptions: {
         input: {
