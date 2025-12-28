@@ -13,10 +13,20 @@
   "sections": {
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "menu": "",
+        "enable_pencil_banner": true,
+        "pencil_banner_text": "Free shipping on orders over $50",
+        "pencil_banner_link": "shopify://collections",
+        "pencil_banner_link_text": "Shop Now",
+        "pencil_banner_text_color": "#ffffff",
+        "pencil_banner_bg_color_one": "#ec9b33",
+        "use_two_colors": true,
+        "pencil_banner_bg_color_two": "#a63b64"
+      }
     }
   },
   "order": [
     "header"
-  ],
+  ]
 }

@@ -1,1 +1,4 @@
-document.addEventListener("DOMContentLoaded",()=>{console.log("Theme initialized for test 2")});
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("Theme initialized for test 2");
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5qcyIsInNvdXJjZXMiOlsiLi4vc3JjL21haW4uanMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICcuL21haW4uY3NzJ1xuXG5kb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCdET01Db250ZW50TG9hZGVkJywgKCkgPT4ge1xuICAgIGNvbnNvbGUubG9nKCdUaGVtZSBpbml0aWFsaXplZCBmb3IgdGVzdCAyJylcbn0pXG5cbiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQSxTQUFTLGlCQUFpQixvQkFBb0IsTUFBTTtBQUNoRCxVQUFRLElBQUksOEJBQThCO0FBQzlDLENBQUM7In0=
