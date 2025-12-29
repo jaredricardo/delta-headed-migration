@@ -14,7 +14,7 @@
     "header": {
       "type": "header",
       "settings": {
-        "menu": "",
+        "menu": "headed-migration-main-menu",
         "enable_pencil_banner": true,
         "pencil_banner_text": "Free shipping on orders over $50",
         "pencil_banner_link": "shopify://collections",
