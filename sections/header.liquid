@@ -1,54 +1,80 @@
-{% if section.settings.enable_pencil_banner %}
+<header>
+  {% if section.settings.enable_pencil_banner %}
   <div class="header__pencil-banner pad-x">
-    <span class="mr-4">{{ section.settings.pencil_banner_text }}</span>
+    <span class="mr-0 md:mr-4 text-white font-bold">{{ section.settings.pencil_banner_text }}</span>
     {% if section.settings.pencil_banner_link %}
-      <a href="{{ section.settings.pencil_banner_link }}" class="rose-avenue peer">
+      <a href="{{ section.settings.pencil_banner_link }}" class="ml-4 rose-avenue">
         {{ section.settings.pencil_banner_link_text }}
       </a>
       <span class="transition-transform duration-200 ease-in-out ml-2 peer-hover:translate-x-2.5">→</span>
     {% endif %}
   </div>
 {% endif %}
-<header>
-  {% if settings.brand_logo %} 
-    <a href="{{ routes.root_url }}" class="header__logo-link">
-      <img src="{{ settings.brand_logo | img_url: '200x' }}" alt="{{ shop.name }}" class="header__logo" />
-    </a>
-  {% else %}
-    <h2 class="header__title">
-      {{ shop.name | link_to: routes.root_url }}
-    </h2>
-  {% endif %}
-
-  <div class="header__menu mr-auto ml-12">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
-  </div>
-
-  <div class="header__icons">
-    {% if shop.customer_accounts_enabled %}
-      <a href="{{ routes.account_url }}">Log In</a>
+  <div class="header__inner">
+    <button class="flex md:hidden cursor-pointer" id="mobile-menu-button" aria-label="Open Mobile Menu">
+      <span class="text-2xl pointer-events-none">☰</span>
+    </button>
+    {% if settings.brand_logo %} 
+      <a href="{{ routes.root_url }}" class="header__logo-link">
+        <img src="{{ settings.brand_logo | img_url: '200x' }}" alt="{{ shop.name }}" class="header__logo" />
+      </a>
+    {% else %}
+      <h2 class="header__title">
+        {{ shop.name | link_to: routes.root_url }}
+      </h2>
     {% endif %}
-    
-    <a href="{{ routes.cart_url }}">
-      {% if cart.item_count > 0 %}
-        <sup>{{ cart.item_count }}</sup>
-      {% endif %}
 
-      {{ 'icon-cart.svg' | inline_asset_content }}
-    </a>
+    <div class="header__menu mr-auto ml-12 hidden md:flex">
+      {% for link in section.settings.menu.links %}
+        {{ link.title | link_to: link.url }}
+      {% endfor %}
+    </div>
+
+    <div class="header__icons">
+      {% if shop.customer_accounts_enabled %}
+        <a class="hidden md:block" href="{{ routes.account_url }}">Log In</a>
+        <span class="hidden md:block">|</span>
+      {% endif %}
+      
+      <a href="{{ routes.cart_url }}">
+        {% if cart.item_count > 0 %}
+          <sup>{{ cart.item_count }}</sup>
+        {% endif %}
+
+        {% render 'icon-cart' %}
+      </a>
+    </div>
   </div>
+
 </header>
 
 {% style%}
+
+main {
+  {% if section.settings.enable_pencil_banner %}
+      margin-top: calc(var(--header-height) + var(--pencil-banner-height));
+    {% else %}
+      margin-top: var(--header-height);
+  {% endif %}
+}
+
+@media screen and (max-width: 768px) {
+  {% if section.settings.enable_pencil_banner %}
+    main {
+      margin-top: calc(var(--header-height) + var(--pencil-banner-height-mobile));
+    }
+  {% endif %}
+}
 
 header a {
   color: {{ section.settings.main_header_link_color }};
 }
 
-.header__pencil-banner {
+.header__pencil-banner,
+.header__pencil-banner a {
   color: {{ section.settings.pencil_banner_text_color }};
+}
+.header__pencil-banner {
   {% if section.settings.use_two_colors %}
     background: linear-gradient(90deg, {{ section.settings.pencil_banner_bg_color_one }}, {{ section.settings.pencil_banner_bg_color_two }});
   {% else %}
