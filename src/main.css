@@ -6,6 +6,8 @@
 	--pencil-banner-height-mobile: 64px;
 	--delta-purple: #302952;
 	--delta-deep-red: #EF4960;
+	--delta-ice-blue: #A4DBE8;
+	--delta-light-gray: #ECECEC;
 	--mobile-menu-max-width: 350px;
 }
 
@@ -132,18 +134,19 @@ theme-underlay.active {
 	transform: translateX(0);
 }
 
-.mobile-menu-drawer__header {
+.mobile-menu-drawer__header,
+.cart-drawer__header {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	position: relative;
 }
 
-aside#mobile-menu-drawer {
+.site-drawer {
 	padding: 24px 20px 12px;
 }
 
-#mobile-menu-close-button {
+.close-drawer-button {
 	position: absolute;
 	right: 10px;
 	background: none;
@@ -157,11 +160,11 @@ aside#mobile-menu-drawer {
     width: 24px;
 }
 
-#mobile-menu-close-button:hover {
+.close-drawer-button:hover {
 	opacity: 1;
 }
 
-#mobile-menu-close-button path {
+.close-drawer-button path {
 	stroke: var(--delta-purple);
 }
 
@@ -228,6 +231,36 @@ cart-drawer-trigger .cart-item-count {
 	font-weight: 700;
     top: -5px;
 	left: 10px;
+}
+
+.cart-drawer__item-count {
+	background-color: var(--delta-deep-red);
+	color: white;
+	border-radius: 50%;
+	width: 24px;
+	height: 24px;
+	font-size: 10px;
+	display: flex;
+	font-size: 15px;
+	align-items: center;
+	justify-content: center;
+	font-weight: 700;
+}
+
+.cart-drawer__free-shipping-bar {
+	width: 100%;
+	height: 4px;
+	background-color: var(--delta-light-gray);
+	border-radius: 100px;
+	overflow: hidden;
+	position: relative;
+}
+
+.cart-drawer__free-shipping-bar-fill {
+	height: 100%;
+	background-color: var(--delta-ice-blue);
+	border-radius: 100px;
+	transition: width 0.3s ease-in-out;
 }
 
 @media screen and (max-width: 768px) {

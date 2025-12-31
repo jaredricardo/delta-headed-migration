@@ -1,3 +1,64 @@
 <aside class="site-drawer" id="cart-drawer">
-    cart drawer content
+    <div class="cart-drawer__header justify-between!">
+        <span class="cart-drawer__item-count">
+            {{ cart.item_count }}
+        </span>
+        <h3 class="font-semibold text-2xl delta-purple ">{{ section.settings.cart_drawer_header_text }}</h3>
+        <button class="close-drawer-button relative!" aria-label="Close cart drawer">
+            {% render 'icon-close' %}
+        </button>
+    </div>
+    {% if section.settings.enable_free_shipping_bar %}
+
+        {% liquid 
+        
+            assign free_shipping_threshold = section.settings.free_shipping_threshold 
+            assign current_cart_total = cart.total_price 
+            assign amount_before_free_shipping = free_shipping_threshold | minus: current_cart_total
+            assign formatted_money = amount_before_free_shipping | money
+            assign free_shipping_message = 'Add ' | append: formatted_money | append: ' ' | append: section.settings.cart_drawer_free_shipping_threshold_not_met_text
+
+            if 0 > amount_before_free_shipping
+                assign free_shipping_message = section.settings.cart_drawer_free_shipping_threshold_met_text 
+            endif
+        
+        -%}
+
+        <div class="cart-drawer__free-shipping-container my-3">
+            <p class="text-center">{{ free_shipping_message }}</p>
+        </div>
+        
+        <div class="cart-drawer__free-shipping-bar">
+            <div class="cart-drawer__free-shipping-bar-fill" style="width: 
+                {% if amount_before_free_shipping <= 0 %}
+                    100%
+                {% else %}
+                    {% assign cart_times_100 = current_cart_total | times: 100 %}
+                    {% assign percent = cart_times_100 | divided_by: free_shipping_threshold %}
+                    {{ percent }}%
+                {% endif %}
+            "></div>
+        </div>
+    {% endif %}
+    {% if cart.item_count == 0 %}
+        <div class="cart-drawer-body__empty">
+            <div class="flex flex-col justify-center items-center mt-10">
+                {% if section.settings.cart_drawer_empty_cart_text %}
+                    <p class=" text-3xl text-center font-bold delta-purple mb-4">{{ section.settings.cart_drawer_empty_cart_text }}</p>
+                {% endif %}
+                {% if section.settings.cart_drawer_empty_cart_subtext %}
+                    <p class="font-semibold delta-purple mb-4">{{ section.settings.cart_drawer_empty_cart_subtext }}</p>
+                {% endif %}
+                {% if section.settings.cart_drawer_empty_cart_cta_link %}
+                    <a class="delta-button rose-avenue mt-10" href="{{ section.settings.cart_drawer_empty_cart_cta_link }}">{{ section.settings.cart_drawer_empty_cart_cta_text }}</a>
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <div class="cart-drawer-body__has-items">
+            {% for item in cart.items %}
+                {% render 'cart-drawer-item', item: item %}
+            {% endfor %}
+        </div>
+    {% endif %}
 </aside>

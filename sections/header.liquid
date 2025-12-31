@@ -3,7 +3,6 @@
 {% if settings.use_cart_drawer %} 
   {% render 'cart-drawer' %}
 {% endif %}
-
 <header>
   {% if section.settings.enable_pencil_banner %}
   <div class="header__pencil-banner pad-x">
@@ -146,6 +145,61 @@ header a {
       "id": "mobile_menu_body_cta_text",
       "label": "Mobile Menu Body CTA Text",
       "default": "Shop All"
+    },
+    {
+      "type": "header",
+      "content": "Cart Drawer Settings"
+    },
+    {
+      "type": "text",
+      "id": "cart_drawer_header_text",
+      "label": "Cart Drawer Header Text",
+      "default": "Your Cart"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_free_shipping_bar",
+      "label": "Enable Free Shipping Bar in Cart Drawer",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "free_shipping_threshold",
+      "label": "Free Shipping Threshold Amount (5000 = $50)",
+      "default": 5000
+    },
+    {
+      "type": "html",
+      "id": "cart_drawer_free_shipping_threshold_not_met_text",
+      "label": "Free Shipping Bar Text (threshold not met)"
+    },
+    {
+      "type": "html",
+      "id": "cart_drawer_free_shipping_threshold_met_text",
+      "label": "Free Shipping Bar Text (threshold met)"
+    },
+    {
+      "type": "text",
+      "id": "cart_drawer_empty_cart_text",
+      "label": "Empty Cart Text",
+      "default": "Your cart is empty!"
+    },
+    {
+      "type": "text",
+      "id": "cart_drawer_empty_cart_subtext",
+      "label": "Empty Cart Subtext",
+      "default": "Add your favorite items to your cart."
+    },
+    {
+      "type": "text",
+      "id": "cart_drawer_empty_cart_cta_text",
+      "label": "Empty Cart CTA Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "cart_drawer_empty_cart_cta_link",
+      "label": "Empty Cart CTA Link"
     },
     {
       "type": "header",
