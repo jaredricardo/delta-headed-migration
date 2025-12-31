@@ -13,6 +13,14 @@
 	color: var(--delta-purple);
 }
 
+.delta-deep-red {
+	color: var(--delta-deep-red);
+}
+
+.rose-avenue {
+	font-family: 'Rose Avenue', sans-serif;
+}
+
 body.underlay-active {
 	overflow: hidden;
 }
@@ -88,7 +96,7 @@ header .header__icons {
 }
 
 .icon-cart {
-	width: 15px;
+	width: 18px;
 	height: auto;
 }
 
@@ -137,7 +145,7 @@ aside#mobile-menu-drawer {
 
 #mobile-menu-close-button {
 	position: absolute;
-	right: 20px;
+	right: 10px;
 	background: none;
 	border: none;
 	font-size: 24px;
@@ -177,8 +185,8 @@ aside#mobile-menu-drawer {
 .mobile-menu-drawer__nav {
 	display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1rem;
-    margin-top: 16px;
+    grid-gap: 2.5rem;
+    margin-top: 40px;
 }
 
 .mobile-menu-drawer__nav a {
@@ -189,6 +197,37 @@ aside#mobile-menu-drawer {
 
 .mobile-menu-drawer__nav a:hover {
 	text-decoration: underline;
+}
+
+.arrow-animate:after {
+	content: "→";
+    display: inline-block;
+    transition: transform .3s ease-in-out;
+    margin-left: 5px;
+}
+
+.arrow-animate:hover:after {
+	transform: translate(15px);
+}
+
+cart-drawer-trigger {
+	position: relative;
+}
+
+cart-drawer-trigger .cart-item-count {
+	position: absolute;
+	background-color: var(--delta-deep-red);
+	color: white;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	font-size: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 700;
+    top: -5px;
+	left: 10px;
 }
 
 @media screen and (max-width: 768px) {

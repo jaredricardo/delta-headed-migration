@@ -18,18 +18,12 @@
     {{ content_for_header }}
   </head>
 
-  <body>
-    <theme-underlay></theme-underlay>
+  <body>    
     {% sections 'header-group' %}
-    {% render 'mobile-menu-drawer' %}
-    {% if settings.use_cart_drawer %} 
-      {% render 'cart-drawer' %}
-    {% endif %}
     <main>
       {{ content_for_layout }}
     </main>
     {% sections 'footer-group' %}
-  
     <script src="{{ 'main.js' | asset_url }}" defer></script>
   </body>
 </html>

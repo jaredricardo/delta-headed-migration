@@ -15,6 +15,12 @@
       "type": "header",
       "settings": {
         "menu": "headed-migration-main-menu",
+        "main_header_link_color": "#302952",
+        "mobile_drawer_logo": "shopify://shop_images/logo.svg",
+        "mobile_menu_customer_count_text": "100,000+ Happy Customers",
+        "mobile_menu_body_title_text": "Rise to your occasion",
+        "mobile_menu_body_cta_link": "shopify://collections/all-products",
+        "mobile_menu_body_cta_text": "Shop All",
         "enable_pencil_banner": true,
         "pencil_banner_text": "Free shipping on orders over $50",
         "pencil_banner_link": "shopify://collections",

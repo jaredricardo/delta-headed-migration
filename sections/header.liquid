@@ -1,3 +1,9 @@
+<theme-underlay></theme-underlay>
+{% render 'mobile-menu-drawer' %}
+{% if settings.use_cart_drawer %} 
+  {% render 'cart-drawer' %}
+{% endif %}
+
 <header>
   {% if section.settings.enable_pencil_banner %}
   <div class="header__pencil-banner pad-x">
@@ -41,6 +47,7 @@
         {% else %}
           <a href="{{ routes.cart_url }}">
       {% endif %}
+        <span class="cart-item-count">{{ cart.item_count }}</span>
         {% render 'icon-cart' %}
       {% if settings.use_cart_drawer %} 
           </cart-drawer-trigger>
@@ -107,6 +114,38 @@ header a {
       "id": "main_header_link_color",
       "label": "Main Header Link Color",
       "default": "#302952"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Menu Drawer Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_drawer_logo",
+      "label": "Mobile Drawer Header Logo"
+    },
+    {
+      "type": "text",
+      "id": "mobile_menu_customer_count_text",
+      "label": "Customer Count Text",
+      "default": "100,000+ Happy Customers"
+    },
+    {
+      "type": "text",
+      "id": "mobile_menu_body_title_text",
+      "label": "Mobile Menu Body Title Text",
+      "default": "Rise to your occasion"
+    },
+    {
+      "type": "url",
+      "id": "mobile_menu_body_cta_link",
+      "label": "Mobile Menu Body CTA Link"
+    },
+    {
+      "type": "text",
+      "id": "mobile_menu_body_cta_text",
+      "label": "Mobile Menu Body CTA Text",
+      "default": "Shop All"
     },
     {
       "type": "header",
