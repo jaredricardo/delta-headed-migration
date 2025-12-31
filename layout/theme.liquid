@@ -10,7 +10,6 @@
     {% endunless %}
 
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
-    
     {{ 'main.css' | asset_url | stylesheet_tag }}
 
     {% # Social, title, etc. %}
@@ -22,11 +21,10 @@
   <body>
     <theme-underlay></theme-underlay>
     {% sections 'header-group' %}
-    <aside id="mobile-menu-drawer">
-      {% comment %} {% if settings.brand_logo %}
-         <img src="{{ settings.brand_logo | img_url: '200x' }}" alt="{{ shop.name }}" class="mobile-header__logo" />
-      {% endif %} {% endcomment %}
-    </aside>
+    {% render 'mobile-menu-drawer' %}
+    {% if settings.use_cart_drawer %} 
+      {% render 'cart-drawer' %}
+    {% endif %}
     <main>
       {{ content_for_layout }}
     </main>

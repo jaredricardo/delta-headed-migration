@@ -3,7 +3,7 @@
   <div class="header__pencil-banner pad-x">
     <span class="mr-0 md:mr-4 text-white font-bold">{{ section.settings.pencil_banner_text }}</span>
     {% if section.settings.pencil_banner_link %}
-      <a href="{{ section.settings.pencil_banner_link }}" class="ml-4 rose-avenue">
+      <a href="{{ section.settings.pencil_banner_link }}" class="ml-4 rose-avenue peer">
         {{ section.settings.pencil_banner_link_text }}
       </a>
       <span class="transition-transform duration-200 ease-in-out ml-2 peer-hover:translate-x-2.5">→</span>
@@ -36,13 +36,17 @@
         <span class="hidden md:block">|</span>
       {% endif %}
       
-      <a href="{{ routes.cart_url }}">
-        {% if cart.item_count > 0 %}
-          <sup>{{ cart.item_count }}</sup>
-        {% endif %}
-
+      {% if settings.use_cart_drawer %} 
+          <cart-drawer-trigger class="cursor-pointer" role="button" tabindex="0" aria-label="Open cart">
+        {% else %}
+          <a href="{{ routes.cart_url }}">
+      {% endif %}
         {% render 'icon-cart' %}
-      </a>
+      {% if settings.use_cart_drawer %} 
+          </cart-drawer-trigger>
+        {% else %}
+          </a>
+      {% endif %}
     </div>
   </div>
 
@@ -90,7 +94,8 @@ header a {
   "settings": [
     {
       "type": "header",
-      "content": "Main Header Settings"
+      "content": "Main Header Settings",
+      "info": "Mobile menu drawer settings can be found in 'theme settings' > 'Mobile Menu Drawer'"
     },
     {
       "type": "link_list",

@@ -10,6 +10,9 @@
 {
   "current": {
     "brand_logo": "shopify://shop_images/logo.svg",
+    "use_cart_drawer": true,
+    "mobile_menu_links": "headed-migration-main-menu",
+    "mobile_menu_body_cta_link": "shopify://collections/all-products",
     "content_for_index": []
   }
 }

@@ -18,6 +18,51 @@
     ]
   },
   {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "use_cart_drawer",
+        "label": "Use Cart Drawer (uses link out if not checked)",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Mobile Menu Drawer",
+    "settings":[
+      {
+        "type": "link_list",
+        "id": "mobile_menu_links",
+        "label": "Mobile Menu Links",
+        "info": "In most cases, should be the same menu that is linked in the 'header' section."  
+      },
+      {
+        "type": "text",
+        "id": "mobile_menu_customer_count_text",
+        "label": "Customer Count Text",
+        "default": "100,000+ Happy Customers"
+      },
+      {
+        "type": "text",
+        "id": "mobile_menu_body_title_text",
+        "label": "Mobile Menu Body Title Text",
+        "default": "Rise to your occasion"
+      },
+      {
+        "type": "url",
+        "id": "mobile_menu_body_cta_link",
+        "label": "Mobile Menu Body CTA Link"
+      },
+      {
+        "type": "text",
+        "id": "mobile_menu_body_cta_text",
+        "label": "Mobile Menu Body CTA Text",
+        "default": "Shop All"
+      }
+    ]
+  },
+  {
     "name": "t:general.typography",
     "settings": [
       {

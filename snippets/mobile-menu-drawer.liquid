@@ -1,0 +1,41 @@
+<aside class="site-drawer" id="mobile-menu-drawer">
+    <div class="mobile-menu-drawer__header">
+        {% if settings.brand_logo %}
+            <img src="{{ settings.brand_logo | img_url: '200x' }}" alt="{{ shop.name }}" class="header__logo" />
+        {% else %}
+            <h2>{{ shop.name }}</h2>
+        {% endif %}
+        <button id="mobile-menu-close-button" class="close-drawer-button" aria-label="Close mobile menu">
+            {% render 'icon-close' %}
+        </button>
+    </div>
+    <div class="mobile-menu-drawer__body">
+        {% if settings.mobile_menu_customer_count_text %}
+            <div class="reviews flex flex-row flex-wrap gap-3 items-center justify-center mt-5">
+                <div class="flex gap-px items-center justify-center">
+                    {% render 'icon-star' %}
+                    {% render 'icon-star' %}
+                    {% render 'icon-star' %}
+                    {% render 'icon-star' %}
+                    {% render 'icon-star' %}
+                    <span class="text-xs inline-block delta-purple ml-3">{{ settings.mobile_menu_customer_count_text }}</span>
+                </div>
+            </div>
+        {% endif %}
+        {% if settings.mobile_menu_body_title_text %}
+            <h3 class="font-extrabold text-[28px] mb-6 mt-2 capitalize text-center self-center delta-purple">{{ settings.mobile_menu_body_title_text }}</h3>
+        {% endif %}
+        {% if settings.mobile_menu_body_cta_link %}
+            <a href="{{ settings.mobile_menu_body_cta_link }}" class="delta-button mt-4 mb-4">
+                {{ settings.mobile_menu_body_cta_text }}
+            </a>
+        {% endif %}
+        {% if settings.mobile_menu_links %}
+            <nav class="mobile-menu-drawer__nav">
+                {% for link in settings.mobile_menu_links.links %}
+                    <a href="{{ link.url }}" class="flex header-menu-item justify-center items-center text-center active">{{ link.title }}</a>
+                {% endfor %}
+            </nav>
+        {% endif %}
+    </div>
+</aside>
