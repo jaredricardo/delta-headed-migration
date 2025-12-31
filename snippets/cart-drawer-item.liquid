@@ -1,3 +1,82 @@
-<div class="cart-drawer-body__item">
-    
-</div>
+<li class="cart-drawer-body__line-item" data-line-item-key="{{ item.key }}">
+    <img 
+        alt="{{ item.product.title }}" 
+        decoding="async" 
+        height="60" 
+        loading="lazy" 
+        src="{{ item.image | image_url: width: 100, height: 60 }}" 
+        srcset="{{ item.image | image_url: width: 100, height: 189 }} 1x, 
+                {{ item.image | image_url: width: 200, height: 377 }} 2x, 
+                {{ item.image | image_url: width: 300, height: 566 }} 3x" 
+        width="100"
+    >
+
+    <div class="flex flex-col justify-between w-full dark-gray">
+        <div>
+            <div class="flex flex-row gap-5 justify-between dark-gray">
+                <a href="{{ item.product.url }}" class="hover:underline">
+                    <p>
+                        <strong>{{ item.product.title }}</strong>
+                    </p>
+                </a>
+                <strong>
+                    <div class="product-price">
+                        <div>{{ item.final_line_price | money }}</div>
+                    </div>
+                </strong>
+            </div>
+
+            {% if item.variant.title != 'Default Title' %}
+                <ul>
+                    <li><strong>{{ item.variant.title }}</strong></li>
+                </ul>
+            {% endif %}
+
+            <span class="cart-subscription text-sm">
+                {% if item.selling_plan_allocation %}
+                    {{ item.selling_plan_allocation.selling_plan.name }}
+                {% endif %}
+            </span>
+        </div>
+
+        <div class="cart-line-quantity">
+            <div class="flex flex-row items-center justify-center gap-2 border border-[#302952] rounded-full px-2.5 py-1 delta-purple">
+
+				<cart-decrement-line-item-button 
+					class="cursor-pointer" 
+					role="button" 
+					tabindex="0" 
+					aria-label="Decrease quantity"
+					data-current-line-quantity="{{ item.quantity }}"
+				>
+
+					<span>−</span>
+				</cart-decrement-line-item-button>
+
+                <small class="delta-purple">{{ item.quantity }}</small>
+
+				<cart-increment-line-item-button
+					class="cursor-pointer"
+					role="button"
+					tabindex="0"
+					aria-label="Increase quantity"
+					data-current-line-quantity="{{ item.quantity }}"
+				>
+					<span>+</span>
+				</cart-increment-line-item-button>
+            </div>
+
+            &nbsp;
+
+            <cart-remove-line-item-button 
+            	role="button" 
+                tabindex="0" 
+                aria-label="Remove {{ item.product.title }} from cart"
+                data-line-key="{{ item.key }}"
+                class="cursor-pointer"
+            >
+                {% render 'icon-trash' %}
+            </cart-remove-line-itembutton>
+        </div>
+    </div>
+</li>
