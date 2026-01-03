@@ -55,15 +55,55 @@
             </div>
         </div>
     {% else %}
-        <div class="cart-drawer-body__has-items">
-            <ul class="cart-drawer-body__line-items mt-4">
+        <div class="cart-drawer-body__has-items mt-2 overflow-y-auto">
+            <ul class="cart-drawer-body__line-items">
                 {% for item in cart.items %}
                     {% render 'cart-drawer-item', item: item %}
                 {% endfor %}
             </ul>
         </div>
-        <div class="cart-drawer__summary">
-
+        <div class="cart-drawer__summary my-4" aria-label="Cart summary">
+            <div class="cart-drawer__subtotal delta-dark-gray">
+                <div class="row">
+                    <span>Subtotal - </span> 
+                    <span class="text-xs">before discounts applied</span>
+                    <span>{{ cart.items_subtotal_price | money }}</span>
+                </div>
+                <div class="row">
+                    <span>Total - </span> 
+                    <span class="text-xs">with discounts and before tax</span>
+                    <span>{{ cart.total_price | money }}</span>
+                </div>
+            </div>
+            <a href="/checkout" class="delta-button rose-avenue my-4">Checkout</a>
+            <div class="cart-drawer__icons">
+                {% for block in section.blocks %}
+                    {% if block.settings.cart_icon_image_1 %}
+                        <div class="cart-drawer__icon">
+                            <img src="{{ block.settings.cart_icon_image_1 | img_url: '100x100' }}" alt="{{ block.settings.cart_icon_text_1 }}" />
+                            <span class="rose-avenue text-[8px] delta-purple">{{ block.settings.cart_icon_text_1 }}</span>
+                        </div>
+                    {% endif %}
+                    {% if block.settings.cart_icon_image_2 %}
+                        <div class="cart-drawer__icon">
+                            <img src="{{ block.settings.cart_icon_image_2 | img_url: '100x100' }}" alt="{{ block.settings.cart_icon_text_2 }}" />
+                            <span class="rose-avenue text-[8px] delta-purple">{{ block.settings.cart_icon_text_2 }}</span>
+                        </div>
+                    {% endif %}
+                    {% if block.settings.cart_icon_image_3 %}
+                        <div class="cart-drawer__icon">
+                            <img src="{{ block.settings.cart_icon_image_3 | img_url: '100x100' }}" alt="{{ block.settings.cart_icon_text_3 }}" />
+                            <span class="rose-avenue text-[8px] delta-purple">{{ block.settings.cart_icon_text_3 }}</span>
+                        </div>
+                    {% endif %}
+                    {% if block.settings.cart_icon_image_4 %}
+                        <div class="cart-drawer__icon">
+                            <img src="{{ block.settings.cart_icon_image_4 | img_url: '100x100' }}" alt="{{ block.settings.cart_icon_text_4 }}" />
+                            <span class="rose-avenue text-[8px] delta-purple">{{ block.settings.cart_icon_text_4 }}</span>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
     {% endif %}
 </aside>

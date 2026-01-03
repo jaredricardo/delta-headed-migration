@@ -13,6 +13,24 @@
   "sections": {
     "header": {
       "type": "header",
+      "blocks": {
+        "cart_icon_7qccwb": {
+          "type": "cart-icon",
+          "settings": {
+            "cart_icon_image_1": "shopify://shop_images/sugar-free.svg",
+            "cart_icon_text_1": "Sugar Free",
+            "cart_icon_image_2": "shopify://shop_images/alcohol-free.svg",
+            "cart_icon_text_2": "No Alcohol",
+            "cart_icon_image_3": "shopify://shop_images/no-fire-allowed.svg",
+            "cart_icon_text_3": "No Calories",
+            "cart_icon_image_4": "shopify://shop_images/gluten-free.svg",
+            "cart_icon_text_4": "Gluten Free"
+          }
+        }
+      },
+      "block_order": [
+        "cart_icon_7qccwb"
+      ],
       "settings": {
         "menu": "headed-migration-main-menu",
         "main_header_link_color": "#302952",

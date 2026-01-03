@@ -7,8 +7,13 @@
 	--delta-purple: #302952;
 	--delta-deep-red: #EF4960;
 	--delta-ice-blue: #A4DBE8;
-	--delta-light-gray: #ECECEC;
+	--delta-dark-gray: #2D2D2D;
 	--mobile-menu-max-width: 350px;
+	/* 
+		Needs to be updated to keep the height of the main line items scrollable if they overflow.
+		Can probably make this dynamic with JS in the future.
+	*/
+	--cart-aside-summary-height: 250px;
 }
 
 .delta-purple {
@@ -17,6 +22,14 @@
 
 .delta-deep-red {
 	color: var(--delta-deep-red);
+}
+
+.delta-ice-blue {
+	color: var(--delta-ice-blue);
+}
+
+.delta-dark-gray {
+	color: var(--delta-dark-gray);
 }
 
 .rose-avenue {
@@ -108,7 +121,7 @@ theme-underlay {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.5);
+	background: rgba(0, 0, 0, 0.25);
 	z-index: 1;
 	display: none;
 }
@@ -128,6 +141,7 @@ theme-underlay.active {
 	transform: translateX(100%);
 	transition: transform 0.3s ease-in-out;
 	z-index: 100000;
+	box-shadow: 0 0 50px #0000004d;
 }
 
 .site-drawer.drawer-active {
@@ -280,6 +294,65 @@ cart-drawer-trigger .cart-item-count {
 	display: flex;
     justify-content: space-between;
 	align-items: center;
+}
+
+.cart-drawer-body__has-items {
+	/* 
+		Accounting for all margins / padding with the 72px. This also needs to manually be adjusted depending  
+		on new element paddings / margins that get added or removed from cart. Should probably be dynamic in the future..
+	*/
+	height: calc(100% - var(--cart-aside-summary-height) - 72px);
+}
+
+.cart-drawer__summary  {	
+    border-top: 1px solid var(--delta-dark-gray);
+    bottom: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 100%;
+    padding: 16px 23px;
+	background-color: white;
+}
+
+.cart-drawer__subtotal .row:not(.text-xs) {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+}
+
+.cart-drawer__subtotal .row span:not(.text-xs) {
+    font-weight: 600;
+	font-size: 16px;
+}
+
+.cart-drawer__icons {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.cart-drawer__icons .cart-drawer__icon {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.cart-drawer__icons .cart-drawer__icon img {
+	width: 32px;
+	height: 32px;
+}
+
+.cart-drawer__icons .cart-drawer__icon {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	gap: 0.75rem;
 }
 
 @media screen and (max-width: 768px) {

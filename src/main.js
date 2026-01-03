@@ -3,7 +3,6 @@ import './main.css'
 // initialize components and event listeners
 
 document.addEventListener('DOMContentLoaded', () => {
-    // initialize event listeners
     initializeMobileMenuButton()
     initializeCloseDrawerButtons()
 })

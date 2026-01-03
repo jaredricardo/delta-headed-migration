@@ -166,17 +166,20 @@ header a {
       "type": "number",
       "id": "free_shipping_threshold",
       "label": "Free Shipping Threshold Amount (5000 = $50)",
-      "default": 5000
+      "default": 5000,
+      "visible_if": "{{ section.settings.enable_free_shipping_bar }}"
     },
     {
       "type": "html",
       "id": "cart_drawer_free_shipping_threshold_not_met_text",
-      "label": "Free Shipping Bar Text (threshold not met)"
+      "label": "Free Shipping Bar Text (threshold not met)",
+      "visible_if": "{{ section.settings.enable_free_shipping_bar }}"
     },
     {
       "type": "html",
       "id": "cart_drawer_free_shipping_threshold_met_text",
-      "label": "Free Shipping Bar Text (threshold met)"
+      "label": "Free Shipping Bar Text (threshold met)",
+      "visible_if": "{{ section.settings.enable_free_shipping_bar }}"
     },
     {
       "type": "text",
@@ -215,41 +218,101 @@ header a {
       "type": "text",
       "id": "pencil_banner_text",
       "label": "Pencil Banner Text",
-      "default": "Free shipping on orders over $50"
+      "default": "Free shipping on orders over $50",
+      "visible_if": "{{ section.settings.enable_pencil_banner }}"
     },
     {
       "type": "url",
       "id": "pencil_banner_link",
-      "label": "Pencil Banner Link URL"
+      "label": "Pencil Banner Link URL",
+      "visible_if": "{{ section.settings.enable_pencil_banner }}"
     },
     {
       "type": "text",
       "id": "pencil_banner_link_text",
       "label": "Pencil Banner Link Text",
-      "default": "Shop Now"
+      "default": "Shop Now",
+      "visible_if": "{{ section.settings.enable_pencil_banner }}"
     },
     {
       "type": "color",
       "id": "pencil_banner_text_color",
       "label": "Pencil Banner Text Color",
-      "default": "#ffffff"
+      "default": "#ffffff",
+      "visible_if": "{{ section.settings.enable_pencil_banner }}"
     },
     {
       "type": "color",
       "id": "pencil_banner_bg_color_one",
       "label": "Pencil Banner Background Color One",
-      "default": "#302952"
+      "default": "#302952",
+      "visible_if": "{{ section.settings.enable_pencil_banner }}"
     },
     {
       "type": "checkbox",
       "id": "use_two_colors",
       "label": "Use Two Background Colors (gradient)",
-      "default": false
+      "default": false,
+      "visible_if": "{{ section.settings.enable_pencil_banner }}"
     },
     {
       "type": "color",
       "id": "pencil_banner_bg_color_two",
-      "label": "Pencil Banner Background Color Two (optional)"
+      "label": "Pencil Banner Background Color Two (optional)",
+      "visible_if": "{{ section.settings.enable_pencil_banner }}"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "cart-icon",
+      "name": "Cart Icon",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "cart_icon_image_1",
+          "label": "Cart Icon Image 1"
+        },
+        {
+          "type": "text",
+          "id": "cart_icon_text_1",
+          "label": "Cart Icon Text 1",
+          "visible_if": "{{ block.settings.cart_icon_image_1 }}"
+        },
+        {
+          "type": "image_picker",
+          "id": "cart_icon_image_2",
+          "label": "Cart Icon Image 2"
+        },
+        {
+          "type": "text",
+          "id": "cart_icon_text_2",
+          "label": "Cart Icon Text 2",
+          "visible_if": "{{ block.settings.cart_icon_image_2 }}"
+        },
+        {
+          "type": "image_picker",
+          "id": "cart_icon_image_3",
+          "label": "Cart Icon Image 3"
+        },
+        {
+          "type": "text",
+          "id": "cart_icon_text_3",
+          "label": "Cart Icon Text 3",
+          "visible_if": "{{ block.settings.cart_icon_image_3 }}"
+        },
+        {
+          "type": "image_picker",
+          "id": "cart_icon_image_4",
+          "label": "Cart Icon Image 4"
+        },
+        {
+          "type": "text",
+          "id": "cart_icon_text_4",
+          "label": "Cart Icon Text 4",
+          "visible_if": "{{ block.settings.cart_icon_image_4 }}"
+        }
+      ]
     }
   ]
 }
