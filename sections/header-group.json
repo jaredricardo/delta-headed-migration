@@ -16,6 +16,7 @@
       "blocks": {
         "cart_icon_7qccwb": {
           "type": "cart-icon",
+          "name": "Cart Icons",
           "settings": {
             "cart_icon_image_1": "shopify://shop_images/sugar-free.svg",
             "cart_icon_text_1": "Sugar Free",

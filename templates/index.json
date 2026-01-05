@@ -9,12 +9,29 @@
  */
 {
   "sections": {
+    "hero_banner_6itrXy": {
+      "type": "hero-banner",
+      "name": "Hero Banner",
+      "settings": {
+        "background_image_desktop": "shopify://shop_images/Blueberry_Acai_10-transformed.jpg",
+        "background_image_mobile": "shopify://shop_images/Blueberry_Acai_10mg-transformed.webp",
+        "heading": "<span class=\"font-semibold whitespace-nowrap\">The most<span class=\"text-[#A4DBE8] rose-avenue font-extrabold ml-2 lg:ml-3 text-[32px] lg:text-[52px]\">loved</span><br></span>THC seltzer.",
+        "button_text": "Shop Now",
+        "button_link": "shopify://collections/all",
+        "text_color": "#ffffff",
+        "background_color": "#ffffff",
+        "desktop_alignment": "right",
+        "vertical_position_desktop": 10,
+        "vertical_position_mobile": -10
+      }
+    },
     "main": {
       "type": "hello-world",
       "settings": {}
     }
   },
   "order": [
+    "hero_banner_6itrXy",
     "main"
   ]
 }

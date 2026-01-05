@@ -1,0 +1,234 @@
+<style>
+  .hero-banner-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    overflow: hidden;
+  }
+
+  .hero-banner-{{ section.id }}::before {
+    content: '';
+    display: block;
+    {% if section.settings.background_image_mobile %}
+      padding-top: {{ 100.0 | divided_by: section.settings.background_image_mobile.aspect_ratio }}%;
+    {% else %}
+      padding-top: 100%;
+    {% endif %}
+  }
+
+  @media (min-width: 768px) {
+    .hero-banner-{{ section.id }}::before {
+      {% if section.settings.background_image_desktop %}
+        padding-top: {{ 100.0 | divided_by: section.settings.background_image_desktop.aspect_ratio }}%;
+      {% else %}
+        padding-top: 56.25%;
+      {% endif %}
+    }
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('{{ section.settings.background_image_mobile | img_url: '1200x' }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  @media (min-width: 768px) {
+    .hero-banner-{{ section.id }} .hero-banner__background {
+      background-image: url('{{ section.settings.background_image_desktop | img_url: '2400x' }}');
+    }
+  }
+
+  .hero-banner-{{ section.id }} .banner-text-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .hero-banner-{{ section.id }} .banner-text-container {
+        align-items: center;
+
+        {% if section.settings.desktop_alignment == 'left' %}
+            justify-content: flex-start;
+        {% elsif section.settings.desktop_alignment == 'right' %}
+            justify-content: flex-end;
+        {% else %}
+            justify-content: center;
+        {% endif %}
+    }
+  }
+
+  .hero-banner-{{ section.id }} .hero-content {
+    transform: translateY({{ section.settings.vertical_position_mobile }}%);
+  }
+
+  @media (min-width: 768px) {
+    .hero-banner-{{ section.id }} .hero-content {
+      transform: translateY({{ section.settings.vertical_position_desktop }}%);
+      tr
+    }
+  }
+
+  .hero-banner-{{ section.id }} svg path,
+  .hero-banner-{{ section.id }} svg g {
+    fill: {{ section.settings.text_color }};
+  }
+
+  .hero-banner-{{ section.id }} .button-arrow {
+    color: {{ section.settings.text_color }};
+  }
+</style>
+
+<div class="hero-banner-{{ section.id }} no-section-padding">
+  <div class="hero-banner__background"></div>
+  <div class="banner-text-container flex md:justify-end justify-center pt-[12%] md:pt-0 items-start md:pr-[5%]">
+    <div class="hero-content justify-center">
+      {% if section.settings.heading != blank %}
+        <h1 class="text-white manrope font-bold lg:text-7xl sm:w-full text-5xl sm:text-4xl md:text-5xl text-center md:text-left mb-6">
+          {{ section.settings.heading }}
+        </h1>
+      {% endif %}
+
+      {% if section.settings.button_text != blank %}
+        <div class="flex font-normal mt-[25px] sm:mt-0 justify-center md:justify-start">
+          <a 
+            class="button-arrow items-center text-2xl sm:text-3xl flex gap-4 rose-avenue" 
+            href="{{ section.settings.button_link }}"
+          >
+            {{ section.settings.button_text }}
+            {% render 'icon-circle-arrow' %}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "tag": "section",
+  "class": "section-hero-banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_desktop",
+      "label": "Background Image (Desktop)",
+      "info": "Recommended size: 1920x1080px or larger"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "Background Image (Mobile)",
+      "info": "Recommended size: 800x1200px or larger"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "html",
+      "id": "heading",
+      "label": "Heading (HTML)",
+      "default": "<span class=\"font-semibold whitespace-nowrap\">The most<span class=\"text-[#A4DBE8] rose-avenue font-extrabold ml-2 lg:ml-3 text-[32px] lg:text-[52px]\">loved</span><br></span>THC seltzer.",
+      "info": "Use HTML to style your heading. Supports inline styles and Tailwind classes."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff",
+      "info": "Applied to text, button, and SVG icon"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color (Fallback)",
+      "default": "#ffffff",
+      "info": "Shows when background image is not loaded"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "select",
+      "id": "desktop_alignment",
+      "label": "Desktop Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "right",
+      "info": "Content is always centered on mobile"
+    },
+    {
+      "type": "range",
+      "id": "vertical_position_desktop",
+      "label": "Vertical Position (Desktop)",
+      "min": -50,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "default": 0,
+      "info": "Adjust content position on Y-axis. Negative moves up, positive moves down."
+    },
+    {
+      "type": "range",
+      "id": "vertical_position_mobile",
+      "label": "Vertical Position (Mobile)",
+      "min": -50,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "default": 0,
+      "info": "Adjust content position on Y-axis for mobile. Negative moves up, positive moves down."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}
