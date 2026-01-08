@@ -25,13 +25,64 @@
         "vertical_position_mobile": -10
       }
     },
-    "main": {
-      "type": "hello-world",
-      "settings": {}
+    "scrolling_text_6VW6xx": {
+      "type": "scrolling-text",
+      "blocks": {
+        "scrolling_block_pRxjUa": {
+          "type": "scrolling-block",
+          "settings": {
+            "title": "Non-Alcoholic",
+            "icon": "shopify://shop_images/non-alcoholic.svg"
+          }
+        },
+        "scrolling_block_XQcjRA": {
+          "type": "scrolling-block",
+          "settings": {
+            "title": "Hemp Derived THC",
+            "icon": "shopify://shop_images/hemp-derived.svg"
+          }
+        },
+        "scrolling_block_efcGn9": {
+          "type": "scrolling-block",
+          "settings": {
+            "title": "All Natural Ingredients",
+            "icon": "shopify://shop_images/all-natural.svg"
+          }
+        },
+        "scrolling_block_h4bXcW": {
+          "type": "scrolling-block",
+          "settings": {
+            "title": "Psychoactive Effects",
+            "icon": "shopify://shop_images/psychoactive.svg"
+          }
+        },
+        "scrolling_block_3ytKGQ": {
+          "type": "scrolling-block",
+          "settings": {
+            "title": "Fast Acting",
+            "icon": "shopify://shop_images/hits-fast.svg"
+          }
+        }
+      },
+      "block_order": [
+        "scrolling_block_pRxjUa",
+        "scrolling_block_XQcjRA",
+        "scrolling_block_efcGn9",
+        "scrolling_block_h4bXcW",
+        "scrolling_block_3ytKGQ"
+      ],
+      "name": "Scrolling Text & Icons",
+      "settings": {
+        "background_color": "#a4dbe8",
+        "text_color": "#302952",
+        "scroll_speed": 16,
+        "enable_separators": true,
+        "section_y_padding": 20
+      }
     }
   },
   "order": [
     "hero_banner_6itrXy",
-    "main"
+    "scrolling_text_6VW6xx"
   ]
 }

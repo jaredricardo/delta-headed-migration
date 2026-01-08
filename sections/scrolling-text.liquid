@@ -1,0 +1,122 @@
+{% style %}
+
+    [data-section-id="{{ section.id }}"] {
+        background-color: {{ section.settings.background_color }};
+        overflow: hidden;
+    }
+
+     [data-section-id="{{ section.id }}"] .scrolling-text-container {
+        padding-top: {{ section.settings.section_y_padding }}px;
+        padding-bottom: {{ section.settings.section_y_padding }}px;
+        display: flex;
+        gap: 2rem;
+        white-space: nowrap;
+        position: relative;
+        width: 100%;
+     }
+
+    [data-section-id="{{ section.id }}"] p,
+    [data-section-id="{{ section.id }}"] span {
+        color: {{ section.settings.text_color }};
+        margin: 0;
+    }
+
+    [data-section-id="{{ section.id }}"] path {
+        fill: {{ section.settings.text_color }};
+    }
+
+{% endstyle %}
+
+
+<script src="{{ 'scrolling-text.js' | asset_url }}" defer id="scrolling-text-script"></script>
+
+<div data-section-id="{{ section.id }}">
+    <div 
+        class="scrolling-text-container" 
+        data-scrolling-text 
+        data-scroll-speed="{{ section.settings.scroll_speed }}"
+    >
+        <div class="scrolling-text-track">
+            {% for block in section.blocks %}
+                {% if block.settings.title %}
+                    <div class="scrolling-text-block">
+                        <p class="text-[16px] uppercase font-semibold flex gap-2">
+                            {% if block.settings.icon %}
+                                <img src="{{ block.settings.icon | image_url: width: 100 }}" alt="{{ block.settings.title }}">
+                            {% endif %}
+                            {{ block.settings.title }}
+                        </p>
+                        {% if section.settings.enable_separators %}
+                            <span class="text-xl">•</span>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "Scrolling Text & Icons",
+        "presets": [
+            {
+                "name": "Scrolling Text & Icons"
+            }
+        ],
+        "settings": [
+            {
+                "type": "color",
+                "id": "background_color",
+                "label": "Background Color",
+                "default": "#A4DBE8"
+            },
+            {
+                "type": "color",
+                "id": "text_color",
+                "label": "Text (and svg) color",
+                "default": "#302952"
+            },
+            {
+                "type": "range",
+                "id": "scroll_speed",
+                "label": "Scroll Speed (higher = faster)",
+                "default": 20,
+                "min": 10,
+                "max": 50,
+                "step": 2
+            },
+            {
+                "type": "checkbox",
+                "id": "enable_separators",
+                "label": "Enable Separators Between Blocks",
+                "default": true
+            },
+            {
+                "type": "number",
+                "id": "section_y_padding",
+                "label": "Section Vertical Padding (px)",
+                "default": 16
+            }
+        ],
+        "blocks": [
+            {
+                "type": "scrolling-block",
+                "name": "Scrolling Block",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Block Text"
+                        
+                    },
+                    {
+                        "type": "image_picker",
+                        "id": "icon",
+                        "label": "Icon (optional)"
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}
