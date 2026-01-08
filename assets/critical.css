@@ -87,6 +87,20 @@ section:has(.no-section-padding) {
   padding: 0;
 }
 
+
+.button-arrow:hover {
+	text-decoration: underline;
+}
+
+.button-arrow svg {
+	transition: transform .3s ease;
+}
+
+.button-arrow:hover svg {
+	transform: rotate(45deg);
+}
+
+
 @media screen and (max-width: 1280px) {
   section,
   .pad-x {

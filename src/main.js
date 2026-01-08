@@ -1,10 +1,16 @@
 import './main.css'
 
+const FOCUSABLE_ELEMENTS = 'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+
+let activeDrawer = null
+let lastFocusedElement = null
+
 // initialize components and event listeners
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeMobileMenuButton()
     initializeCloseDrawerButtons()
+    initializeEscapeKeyListener()
 })
 
 document.addEventListener('cart:updated', () => {
@@ -13,12 +19,33 @@ document.addEventListener('cart:updated', () => {
 
 // initialization functions
 
+function initializeEscapeKeyListener() {
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && activeDrawer && activeDrawer.classList.contains('drawer-active')) {
+            closeAllDrawers()
+        }
+    })
+}
+
 function initializeMobileMenuButton() {
     const mobileMenuButton = document.getElementById('mobile-menu-button')
     if (!mobileMenuButton) return
     mobileMenuButton.addEventListener('click', () => {
+        lastFocusedElement = document.activeElement
         toggleUnderlay()
-        document.querySelector('#mobile-menu-drawer').classList.toggle('drawer-active')
+        const drawer = document.querySelector('#mobile-menu-drawer')
+        drawer.classList.toggle('drawer-active')
+        
+        if (drawer.classList.contains('drawer-active')) {
+            activeDrawer = drawer
+            trapFocus(drawer)
+        } else {
+            removeFocusTrap(drawer)
+            if (lastFocusedElement) {
+                lastFocusedElement.focus()
+                lastFocusedElement = null
+            }
+        }
     })
 }
 
@@ -31,6 +58,43 @@ function initializeCloseDrawerButtons() {
 
 // utility functions
 
+function trapFocus(element) {
+    const focusableElements = element.querySelectorAll(FOCUSABLE_ELEMENTS)
+    const firstFocusable = focusableElements[0]
+    const lastFocusable = focusableElements[focusableElements.length - 1]
+    
+    element.addEventListener('keydown', handleFocusTrap)
+    
+    function handleFocusTrap(e) {
+        if (e.key !== 'Tab') return
+        
+        if (e.shiftKey) {
+            if (document.activeElement === firstFocusable) {
+                e.preventDefault()
+                lastFocusable.focus()
+            }
+        } else {
+            if (document.activeElement === lastFocusable) {
+                e.preventDefault()
+                firstFocusable.focus()
+            }
+        }
+    }
+    
+    element._focusTrapHandler = handleFocusTrap
+    
+    if (firstFocusable) {
+        firstFocusable.focus()
+    }
+}
+
+function removeFocusTrap(element) {
+    if (element._focusTrapHandler) {
+        element.removeEventListener('keydown', element._focusTrapHandler)
+        delete element._focusTrapHandler
+    }
+}
+
 function toggleUnderlay() {
     document.body.classList.toggle('underlay-active')
     document.querySelector('theme-underlay').classList.toggle('active')
@@ -40,7 +104,15 @@ function closeAllDrawers() {
     toggleUnderlay()
     document.querySelectorAll('.site-drawer').forEach((drawer) => {
         drawer.classList.remove('drawer-active')
+        removeFocusTrap(drawer)
     })
+    
+    if (lastFocusedElement) {
+        lastFocusedElement.focus()
+        lastFocusedElement = null
+    }
+    
+    activeDrawer = null
 }
 
 // classes for web components
@@ -68,16 +140,22 @@ class CartDrawerTrigger extends HTMLElement {
     }
     
     handleClick = () => {
+        lastFocusedElement = document.activeElement
         toggleUnderlay()
         const cartDrawer = document.querySelector('#cart-drawer')
         const isOpen = cartDrawer.classList.toggle('drawer-active')
         
-        // Update ARIA state
         this.setAttribute('aria-expanded', isOpen)
         
-        // Optionally focus the drawer when opened
         if (isOpen) {
-            cartDrawer.focus()
+            activeDrawer = cartDrawer
+            trapFocus(cartDrawer)
+        } else {
+            removeFocusTrap(cartDrawer)
+            if (lastFocusedElement) {
+                lastFocusedElement.focus()
+                lastFocusedElement = null
+            }
         }
     }
     
