@@ -1,4 +1,4 @@
-<style>
+{% style %}
   .hero-banner-{{ section.id }} {
     position: relative;
     width: 100%;
@@ -75,7 +75,7 @@
   @media (min-width: 768px) {
     .hero-banner-{{ section.id }} .hero-content {
       transform: translateY({{ section.settings.vertical_position_desktop }}%);
-      tr
+
     }
   }
 
@@ -87,7 +87,7 @@
   .hero-banner-{{ section.id }} .button-arrow {
     color: {{ section.settings.text_color }};
   }
-</style>
+{% endstyle %}
 
 <div class="hero-banner-{{ section.id }} no-section-padding">
   <div class="hero-banner__background"></div>
@@ -117,8 +117,6 @@
 {% schema %}
 {
   "name": "Hero Banner",
-  "tag": "section",
-  "class": "section-hero-banner",
   "settings": [
     {
       "type": "header",

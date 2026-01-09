@@ -79,10 +79,29 @@
         "enable_separators": true,
         "section_y_padding": 20
       }
+    },
+    "image_with_text_GVcYHV": {
+      "type": "image-with-text",
+      "custom_css": [
+        "a span {font-family: \"Rose Avenue\", sans-serif; color: #ef4960;}",
+        ".arrow-animate::after {color: #ef4960;}"
+      ],
+      "name": "Image With Text",
+      "settings": {
+        "background_color": "#ffffff",
+        "text_color": "#2d2d2d",
+        "image": "shopify://shop_images/vibe-right_98243f7a-e02e-43f6-9b33-8b21a91dede8.png",
+        "image_desktop_position": "left",
+        "paragraph_text": "3 precise doses. 8 refreshing flavors. From unwinding after work to celebrating your best friend’s engagement to debating the merits of mercantilism, There’s a Delta for That™.",
+        "button_link": "shopify://collections/all-products",
+        "button_text": "Discover More",
+        "enable_button_arrow": true
+      }
     }
   },
   "order": [
     "hero_banner_6itrXy",
-    "scrolling_text_6VW6xx"
+    "scrolling_text_6VW6xx",
+    "image_with_text_GVcYHV"
   ]
 }

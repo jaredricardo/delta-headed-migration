@@ -1,0 +1,127 @@
+
+{% style %}
+
+    [data-section-id="{{ section.id }}"] {
+        background_color: {{ section.settings.background_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] a,
+    [data-section-id="{{ section.id }}"] p {
+        color: {{ section.settings.text_color }};
+    }
+
+    {% if section.settings.enable_button_arrow %}
+        [data-section-id="{{ section.id }}"]  .arrow-animate::after {
+            content: "→";
+            display: inline-block;
+            margin-left: 5px;
+            transition: transform 0.3s ease-in-out;
+
+        }
+    {% endif %}
+
+    [data-section-id="{{ section.id }}"] .container.left {
+        flex-direction: row;
+    }
+
+    [data-section-id="{{ section.id }}"] .container.right {
+        flex-direction: row-reverse;
+    }
+
+    @media screen and (max-width: 1024px) {
+        [data-section-id="{{ section.id }}"] .container {
+            flex-direction: column !important;
+        }
+    }
+
+{% endstyle %}
+
+<div data-section-id="{{ section.id }}" class="pad-x">
+    <div class="container flex {{ section.settings.image_desktop_position }} flex-col items-start lg:py-24 py-16 lg:gap-20 gap-6 justify-start">
+        <div class="lg:w-1/2! flex justify-start items-center w-full self-center">
+            {% if section.settings.image %}
+                <img class="max-w-[170px] lg:max-w-[300px]" src="{{ section.settings.image | img_url: 'master' }}" alt="Image with Text">
+            {% endif %}
+        </div>
+        <div class="flex flex-col lg:text-4xl text-2xl font-light gap-2 lg:w-[70%] self-center">
+            {% if section.settings.paragraph_text %}
+                <p class="lg:text-3xl text-xl leading-[175%] font-medium pb-4 text-[#2D2D2D]">{{ section.settings.paragraph_text }}</p>
+            {% endif %}
+            {% if section.settings.button_link and section.settings.button_text %}
+                <a class="arrow-animate" href="{{ section.settings.button_link }}">
+                    <span class="underline-offset-2 line-normal hover:underline text-xl lg:text-2xl">{{ section.settings.button_text }}</span>
+                </a>
+            {% endif %}         
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Image With Text",
+    "settings": [
+        {
+            "type": "color",
+            "id": "background_color",
+            "label": "Background Color",
+            "default": "#ffffff"
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+            "default": "#000000"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "select",
+            "id": "image_desktop_position",
+            "label": "Image Desktop Position",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                }
+            ],
+            "default": "left"
+        },
+        {
+            "type": "textarea",
+            "id": "paragraph_text",
+            "label": "Paragraph Text",
+            "default": "Lorum ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text",
+            "default": "Discover More"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_button_arrow",
+            "label": "Use Button Arrow",
+            "default": true
+        }
+    ],
+    "presets": [
+    {
+        "name": "Image With Text"
+    }
+  ]
+}
+
+{% endschema %}

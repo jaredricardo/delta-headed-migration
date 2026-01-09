@@ -1,6 +1,45 @@
-/** Critical CSS for the theme. This file is included on every page. */
+:root {
+	--header-height: 80px;
+	--pencil-banner-height: 48px;
+	--pencil-banner-height-mobile: 64px;
+	--delta-purple: #302952;
+	--delta-deep-red: #EF4960;
+	--delta-ice-blue: #A4DBE8;
+	--delta-dark-gray: #2D2D2D;
+	--mobile-menu-max-width: 350px;
+	/* 
+		Needs to be updated to keep the height of the main line items scrollable if they overflow.
+		Can probably make this dynamic with JS in the future.
+	*/
+	--cart-aside-summary-height: 250px;
+}
 
-/* Reset styles inspired by https://www.joshwcomeau.com/css/custom-css-reset/ */
+.delta-purple {
+	color: var(--delta-purple);
+}
+
+.delta-deep-red {
+	color: var(--delta-deep-red);
+}
+
+.delta-ice-blue {
+	color: var(--delta-ice-blue);
+}
+
+.delta-dark-gray {
+	color: var(--delta-dark-gray);
+}
+
+.rose-avenue {
+	font-family: 'Rose Avenue', sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 100%;
+  width: 1600px;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -16,7 +55,7 @@ html:has(dialog[scroll-lock][open], details[scroll-lock][open]) {
   overflow: hidden;
 }
 
-img,
+/* img, */
 picture,
 video,
 canvas,
