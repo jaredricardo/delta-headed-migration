@@ -53,6 +53,7 @@ header .header__icons {
 	display: flex;
 	gap: 0.5rem;
 	align-items: center;
+	margin-right: 0.5rem;
 }
 
 .header__menu a {

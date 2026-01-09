@@ -1,0 +1,132 @@
+
+{% style %}
+  {% for block in section.blocks %}
+    [data-section-id="{{ section.id }}"] .can-column-{{ forloop.index }} {
+      background-color: {{ block.settings.block_background_color }};
+      color: {{ block.settings.block_text_color }};
+    }
+    [data-section-id="{{ section.id }}"] .can-column-{{ forloop.index }} .button-arrow svg path {
+      fill: {{ block.settings.block_text_color }};
+    }
+  {% endfor %}
+{% endstyle %}
+
+<div data-section-id="{{ section.id }}">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-0">
+    {% for block in section.blocks %}
+      <div class="can-column-{{ forloop.index }} min-h-75 lg:min-h-80 md:min-h-100 pt-6 h-full w-full flex flex-col" {{ block.shopify_attributes }}>
+        <h3 class="px-5 font-extrabold lg:text-4xl text-2xl mb-6">{{ block.settings.title }}</h3>
+        
+        {% if block.settings.flavors_list != blank %}
+          <span class="px-5 text-sm">Flavors:</span>
+          <p class="px-5 font-bold capitalize mb-0 lg:mb-6">{{ block.settings.flavors_list }}</p>
+        {% endif %}
+        
+        <div class="mt-auto flex justify-between items-end px-5">
+          {% if block.settings.bottom_block_image %}
+            {% render 'image', 
+              image: block.settings.bottom_block_image, 
+              width: 100, 
+              class: 'ml-4 h-min-[100px] h-auto custom-shift max-w-[110px] lg:max-w-[190px]',
+              style: 'width: 100%;'
+            %}
+          {% endif %}
+          
+          {% if block.settings.block_button_link != blank and block.settings.block_button_text != blank %}
+            <a 
+              class="items-center flex gap-4 button-arrow rose-avenue content-center -ml-5 sm:ml-0 text-sm! lg:text-base lg:font-normal whitespace-nowrap lg:mb-6 mb-2" 
+              href="{{ block.settings.block_button_link }}"
+            >
+              {{ block.settings.block_button_text }}
+              {% if block.settings.enable_button_arrow %}
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g id="Group 117">
+                    <g id="Group 113">
+                      <path id="Path 24" d="M20 39.9985C16.0444 39.9985 12.1776 38.8256 8.8886 36.6279C5.59961 34.4303 3.03618 31.3067 1.52243 27.6522C0.00867942 23.9977 -0.387406 19.9763 0.384298 16.0967C1.156 12.2171 3.06087 8.65336 5.85792 5.85631C8.65497 3.05926 12.2186 1.15454 16.0982 0.382834C19.9779 -0.388871 23.9992 0.00721458 27.6537 1.52097C31.3082 3.03472 34.4318 5.59808 36.6294 8.88706C38.827 12.176 40 16.0429 40 19.9986C39.9938 25.301 37.8847 30.3844 34.1353 34.1337C30.3859 37.8831 25.3024 39.9923 20 39.9985ZM20 1.13938C16.2701 1.1395 12.6239 2.24567 9.52261 4.31801C6.42132 6.39035 4.0042 9.33576 2.57689 12.7818C1.14958 16.2279 0.776174 20.0198 1.50393 23.6781C2.23168 27.3363 4.02789 30.6967 6.66541 33.3341C9.30293 35.9716 12.6633 37.7677 16.3216 38.4953C19.9799 39.223 23.7718 38.8495 27.2179 37.4221C30.6639 35.9946 33.6092 33.5774 35.6815 30.4761C37.7537 27.3747 38.8598 23.7285 38.8598 19.9986C38.8542 14.9984 36.8654 10.2046 33.3297 6.66903C29.794 3.13345 25.0002 1.14481 20 1.13938Z" fill="currentColor"></path>
+                    </g>
+                    <g id="Group 116">
+                      <g id="Group 114">
+                        <path id="Rectangle 36" d="M24.9593 14.1603L13.6685 26.2881L14.503 27.065L25.7938 14.9372L24.9593 14.1603Z" fill="currentColor"></path>
+                      </g>
+                      <g id="Group 115">
+                        <path id="Path 25" d="M26.1728 21.3259H25.032V14.81H18.2751V13.6692H26.1728V21.3259Z" fill="currentColor"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              {% endif %}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+    "name": "Can Triple Column",
+    "settings": [
+
+    ],
+    "blocks": [
+        {
+            "type": "triple-column-block",
+            "name": "Triple Column Block",
+            "limit": 3,
+            "settings": [
+                {
+                    "type": "color",
+                    "id": "block_background_color",
+                    "label": "Block Background Color",
+                    "default": "#302952"
+                },
+                {
+                    "type": "color",
+                    "id": "block_text_color",
+                    "label": "Block Text Color",
+                    "default": "#FFFFFF"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Column header",
+                    "default": "Column Title"
+                },
+                {
+                    "type": "textarea",
+                    "id": "flavors_list",
+                    "label": "Flavors list (or subheader)"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "bottom_block_image",
+                    "label": "Bottom Block Image"
+                },
+                {
+                    "type": "url",
+                    "id": "block_button_link",
+                    "label": "Block Button Link"
+                },
+                {
+                    "type": "text",
+                    "id": "block_button_text",
+                    "label": "Block Button Text"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "enable_button_arrow",
+                    "label": "Use Button Arrow",
+                    "default": true
+                }
+            ]
+        }
+    ],
+    "presets": [
+    {
+        "name": "Can Triple Column"
+    }
+  ]
+}
+
+{% endschema %}
