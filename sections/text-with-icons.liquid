@@ -1,0 +1,149 @@
+{% style %}
+    [data-section-id="{{ section.id }}"] {
+        background-color: {{ section.settings.bg_color }};
+        padding-top: {{ section.settings.padding_y_mobile }}px;
+        padding-bottom: {{ section.settings.padding_y_mobile }}px;
+    }
+    
+    @media (min-width: 768px) {
+        [data-section-id="{{ section.id }}"] {
+            padding-top: {{ section.settings.padding_y_desktop }}px;
+            padding-bottom: {{ section.settings.padding_y_desktop }}px;
+        }
+    }
+    
+    [data-section-id="{{ section.id }}"] h2,
+    [data-section-id="{{ section.id }}"] p {
+        color: {{ section.settings.text_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] svg path {
+        fill: {{ section.settings.icon_color }};
+    }
+{% endstyle %}
+
+<div data-section-id="{{ section.id }}">
+    <div class="container flex flex-col items-center pad-x">
+        <div class="w-full text-center pt-8 pb-4 lg:pb-12">
+            {% if section.settings.heading != blank %}
+                <h2 class="xl:text-7xl lg:text-6xl text-4xl mb-6 lg:mb-10 font-extrabold! tracking-[-1px]">
+                    {{ section.settings.heading }}
+                </h2>
+            {% endif %}
+            
+            {% if section.settings.subheading != blank %}
+                <p class="text-[18px] font-medium text-[#2d2d2d] md:text-2xl md:font-normal md:max-w-240 md:mx-auto md:leading-[175%]">
+                    {{ section.settings.subheading }}
+                </p>
+            {% endif %}
+        </div>
+        
+        {% if section.blocks.size > 0 %}
+            <div class="grid grid-cols-2 lg:grid-cols-4 font-medium lg:text-4xl text-xl md:text-2xl gap-7 my-6 lg:my-10 w-full">
+                {% for block in section.blocks %}
+                    <div class="flex items-center text-sm flex-col gap-5 rose-avenue text-center lg:text-2xl" {{ block.shopify_attributes }}>
+                        {% if block.settings.icon_image %}
+                            <img 
+                                src="{{ block.settings.icon_image | image_url: width: 100 }}" 
+                                alt="{{ block.settings.icon_text }}"
+                                width="90"
+                                height="90"
+                                loading="lazy"
+                            >
+                        {% endif %}
+                        <p>{{ block.settings.icon_text }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Text with Icons",
+  "settings": [
+    {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color",
+        "default": "#FFFFFF"
+    },
+    {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#302952"
+    },
+    {
+        "type": "color",
+        "id": "icon_color",
+        "label": "Icon Color",
+        "default": "#A4DBE8"
+    },
+    {
+        "type": "html",
+        "id": "heading",
+        "label": "Heading (html inside an h2)",
+        "default": "Clean ingredients. <br> Consistent experience."
+    },
+    {
+        "type": "textarea",
+        "id": "subheading",
+        "label": "Subheading",
+        "default": "Precisely dosed. Premium ingredients. Our THC undergoes Bill-Nye-level testing to ensure purity and potency. No sugar. No alcohol. No mystery ingredients. Just sparkling water, natural flavors, and 12 oz of liquid chill."
+    },
+    {
+        "type": "header",
+        "content": "Spacing"
+    },
+    {
+        "type": "range",
+        "id": "padding_y_mobile",
+        "label": "Padding Y (Mobile)",
+        "min": 0,
+        "max": 120,
+        "step": 4,
+        "unit": "px",
+        "default": 32,
+        "info": "Vertical padding on mobile devices (under 768px)"
+    },
+    {
+        "type": "range",
+        "id": "padding_y_desktop",
+        "label": "Padding Y (Desktop)",
+        "min": 0,
+        "max": 200,
+        "step": 8,
+        "unit": "px",
+        "default": 64,
+        "info": "Vertical padding on desktop devices (768px and above)"
+    }
+  ],
+  "blocks": [
+    {
+        "type": "icon-block",
+        "name": "Icon Block",
+        "limit": 4,
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "icon_image",
+                "label": "Icon Image"
+            }, 
+            {
+                "type": "text",
+                "id": "icon_text",
+                "label": "Icon Text",
+                "default": "Icon Description"
+            }
+        ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text with Icons"
+    }
+  ]
+}
+{% endschema %}

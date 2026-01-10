@@ -33,15 +33,30 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('{{ section.settings.background_image_mobile | img_url: '1200x' }}');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__background .desktop-image {
+    display: none;
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__background .mobile-image {
+    display: block;
   }
 
   @media (min-width: 768px) {
-    .hero-banner-{{ section.id }} .hero-banner__background {
-      background-image: url('{{ section.settings.background_image_desktop | img_url: '2400x' }}');
+    .hero-banner-{{ section.id }} .hero-banner__background .desktop-image {
+      display: block;
+    }
+
+    .hero-banner-{{ section.id }} .hero-banner__background .mobile-image {
+      display: none;
     }
   }
 
@@ -90,7 +105,34 @@
 {% endstyle %}
 
 <div class="hero-banner-{{ section.id }} no-section-padding">
-  <div class="hero-banner__background"></div>
+  <div class="hero-banner__background">
+    {% if section.settings.background_image_mobile %}
+      <img 
+        src="{{ section.settings.background_image_mobile | image_url: width: 1200 }}"
+        srcset="{{ section.settings.background_image_mobile | image_url: width: 600 }} 600w,
+                {{ section.settings.background_image_mobile | image_url: width: 800 }} 800w,
+                {{ section.settings.background_image_mobile | image_url: width: 1200 }} 1200w"
+        sizes="100vw"
+        alt="{{ section.settings.heading | strip_html | escape }}"
+        loading="eager"
+        fetchpriority="high"
+        class="mobile-image"
+      >
+    {% endif %}
+    {% if section.settings.background_image_desktop %}
+      <img 
+        src="{{ section.settings.background_image_desktop | image_url: width: 2400 }}"
+        srcset="{{ section.settings.background_image_desktop | image_url: width: 1200 }} 1200w,
+                {{ section.settings.background_image_desktop | image_url: width: 1800 }} 1800w,
+                {{ section.settings.background_image_desktop | image_url: width: 2400 }} 2400w"
+        sizes="100vw"
+        alt="{{ section.settings.heading | strip_html | escape }}"
+        loading="eager"
+        fetchpriority="high"
+        class="desktop-image"
+      >
+    {% endif %}
+  </div>
   <div class="banner-text-container flex md:justify-end justify-center pt-[12%] md:pt-0 items-start md:pr-[5%]">
     <div class="hero-content justify-center">
       {% if section.settings.heading != blank %}
