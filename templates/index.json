@@ -97,11 +97,71 @@
         "button_text": "Discover More",
         "enable_button_arrow": true
       }
+    },
+    "can_triple_column_7KayBF": {
+      "type": "can-triple-column",
+      "blocks": {
+        "triple_column_block_aede8w": {
+          "type": "triple-column-block",
+          "settings": {
+            "block_background_color": "#8d479a",
+            "block_text_color": "#ffffff",
+            "title": "Keep it casual",
+            "flavors_list": "Squeeze of Lime, Bright Berry, Juicy Watermelon, and Tropical Mango",
+            "bottom_block_image": "shopify://shop_images/5mg_casual.webp",
+            "block_button_link": "/collections/all-products#5mg",
+            "block_button_text": "Shop 5mg",
+            "enable_button_arrow": true
+          }
+        },
+        "triple_column_block_FFk9YY": {
+          "type": "triple-column-block",
+          "settings": {
+            "block_background_color": "#d56a99",
+            "block_text_color": "#ffffff",
+            "title": "Find your sweet spot",
+            "flavors_list": "Blueberry acai, Pink lemonade, Blood orange, Passion fruit",
+            "bottom_block_image": "shopify://shop_images/10mg_sweet.webp",
+            "block_button_link": "/collections/all-products#10mg",
+            "block_button_text": "Shop 10mg",
+            "enable_button_arrow": true
+          }
+        },
+        "triple_column_block_c3xHpr": {
+          "type": "triple-column-block",
+          "settings": {
+            "block_background_color": "#d65e34",
+            "block_text_color": "#ffffff",
+            "title": "Sip on expert mode",
+            "flavors_list": "Blueberry acai, Pink lemonade, Blood orange, Passion fruit",
+            "bottom_block_image": "shopify://shop_images/20mg_expert.webp",
+            "block_button_link": "/collections/all-products#20mg",
+            "block_button_text": "shop 20mg",
+            "enable_button_arrow": true
+          }
+        }
+      },
+      "block_order": [
+        "triple_column_block_aede8w",
+        "triple_column_block_FFk9YY",
+        "triple_column_block_c3xHpr"
+      ],
+      "name": "Can Triple Column",
+      "settings": {}
+    },
+    "liquid_section_9Ntr7n": {
+      "type": "liquid-section",
+      "name": "Liquid",
+      "settings": {
+        "liquid": "<div class=\"available-wrapper\" style=\"padding: 1.5rem 0; background-color: #A4DBE8;\">\n    <div style=\"max-width: 1280px; margin: 0 auto; padding: 0 1rem; display: flex; justify-content: center;\">\n        <p class=\"delta-purple available-text\" style=\"font-size: 1.25rem; text-align: center; font-weight: 700; letter-spacing: -0.02em; margin: 0;\">\n        Available in:\n            <span class=\"available-span\" style=\"font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em;\">4, 12, and 24 Pack</span>\n        </p>\n    </div>\n</div>\n\n<style>\n@media (min-width: 768px) {\n    .available-wrapper .available-text { font-size: 1.5rem !important; }\n    .available-wrapper .available-span { font-size: 1.5rem !important; }\n}\n</style>"
+      }
     }
   },
   "order": [
     "hero_banner_6itrXy",
     "scrolling_text_6VW6xx",
-    "image_with_text_GVcYHV"
+    "image_with_text_GVcYHV",
+    "can_triple_column_7KayBF",
+    "liquid_section_9Ntr7n"
   ]
 }

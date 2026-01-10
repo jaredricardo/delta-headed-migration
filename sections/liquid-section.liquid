@@ -1,0 +1,23 @@
+
+<div data-section-id="{{ section.id }}">
+  {{ section.settings.liquid }}
+</div>
+
+{% schema %}
+{
+    "name": "Liquid / HTML",
+    "settings": [
+        {
+            "type": "html",
+            "id": "liquid",
+            "label": "Liquid Content"
+        }
+    ],
+    "presets": [
+    {
+        "name": "Liquid / HTML"
+    }
+  ]
+}
+
+{% endschema %}
